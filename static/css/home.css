@@ -1,0 +1,339 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  
+  body{
+    overflow-x:hidden;
+    background: rgb(173,207,210);
+  }
+  
+  .container{
+    width:100vw;
+    min-height:30vh;
+    display: flex;
+    justify-content: center;
+    padding-left: 900px; 
+  }
+  
+  .gramophone{
+    position: relative;
+    top:50vmin;
+  }
+  
+  /*Cube styling*/
+  .scene {
+    width:40vmin;
+    height:40vmin;
+    perspective:120vmin;
+  }
+  
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+  
+  .cube__face {
+    position: absolute;
+    width:40vmin;
+    height:40vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cube__face--front  { 
+    background-color: #371a14;
+    transform: rotateY(  0deg) translateZ(20vmin); 
+    height:30vmin;
+  }
+  
+  .cube__face--left   { 
+    background-color: #9a3403;
+    transform: rotateY(-90deg) translateZ(20vmin);
+    height:30vmin;
+    background-image: linear-gradient(to top, #632101, #9a3403);
+  }
+  
+  .cube__face--top {
+    background-color: #ab4900;
+    transform: rotateX( 90deg) translateZ(20vmin); 
+    background-image: linear-gradient(to left, #bf6a0a, #bf6a0a, #ab4900);
+  }
+  
+  .show-top {
+    transform: translateZ(-20vmin) rotateX(-20deg) rotateY(60deg);
+  }
+  
+  /*Gramophone Record*/
+  .record{
+    width:30vmin;
+    height:30vmin;
+    border-radius:50%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .record-middle{
+    width:10vmin;
+    height:10vmin;
+    border-radius:50%;
+    background-color: #bd1f21;
+    border:1vmin solid #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /*Sound horn and main styling*/
+  .main-part{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:-75vmin;
+    left:10vmin;
+    transform:scale(0.7);
+  }
+  
+  .sound-hole{
+    width:50vmin;
+    height:20vmin;
+    border-radius:50%;
+    transform:rotateZ(-50deg);
+    position: relative;
+    right:27vmin;
+    top:28vmin;
+    z-index:4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(177,75,0);
+    background: radial-gradient(circle, rgba(177,75,0,1) 0%, rgba(246,172,63,1) 54%);
+    border-bottom:1vmin solid #824914;
+  }
+  
+  .s-holeIn{
+   width:30vmin;
+   height:10vmin;
+   border-radius:50%; 
+    background-color: #000;
+  }
+  
+  .horn-top{
+    width:40vmin;
+    height:50vmin;
+    background-color: #fcb040;
+    background-image: linear-gradient(to bottom, #7d4909, #e28919, #fcb040);
+    clip-path: polygon(61% 0, 0 56%, 100% 100%);
+    position: relative;
+    right:18vmin;
+    top:4vmin;
+  }
+  
+  .horn-bottom{
+    width:3vmin;
+    height:20vmin;
+    background-color: #fcb040;
+    z-index:3;
+    position: relative;
+    left:0.2vmin;
+    top:2vmin;
+    background-color: #fcb040;
+    background-image: linear-gradient(to right, #7d4909, #e28919, #fcb040);
+    
+  }
+  
+  /*Connectors*/
+  .horn-bottom:before{
+    content:"";
+    width:3vmin;
+    height:24vmin;
+    transform:rotateZ(80deg);
+    background-color: #fcb040;
+    position: absolute;
+    left:-12vmin;
+    top:-3vmin;
+    background-color: #fcb040;
+    background-image: linear-gradient(to left, #7d4909, #e28919, #fcb040);
+  }
+  
+  .horn-bottom:after{
+    content:"";
+    width:3vmin;
+    height:7.5vmin;
+    background-color: #fcb040;
+    position: absolute;
+    top:10vmin;
+    left:-22vmin;
+    background-color: #fcb040;
+    background-image: linear-gradient(to left, #7d4909, #e28919, #fcb040);
+  }
+  
+  /*Musical symbols div*/
+  .musical-symbols{
+    position: relative;
+    right:32vmin;
+  }
+  
+  /*Styling the beam note*/
+  .beam, .beam2{
+    width:5vmin;
+    height:6vmin;
+    border-top:0.8vmin solid #000;
+    border-left:0.8vmin solid #000;
+    border-right:0.8vmin solid #000;
+    position: relative;
+    right:10vmin;
+    top:2vmin;
+  }
+  
+  .beam:after, .beam:before, .beam2:before, .beam2:after{
+    content:"";
+    width:3vmin;
+    height:3vmin;
+    border-radius:50%;
+    background-color: #000;
+    position: absolute;
+  }
+  
+  .beam:before, .beam2:before{
+    left:-3vmin;
+    top:3vmin;
+  }
+  
+  .beam:after, .beam2:after{
+    left:1.3vmin;
+    top:3vmin;
+  }
+  
+  /*Styling the minim note*/
+  .minim{
+    width:1vmin;
+    height:6vmin;
+    background-color: #000;
+    position: relative;
+  }
+  
+  .minim:after{
+    content:"";
+    width:2vmin;
+    height:2vmin;
+    border-radius:50%;
+    border:0.5vmin solid #000;
+    position: absolute;
+    left:-2.1vmin;
+    top:4.8vmin;
+  }
+  .logo {
+
+    padding-top:200px;
+    font-size: 70px;
+    padding-left: 150px;
+    position:absolute;
+    color: #fff;
+	font-family: 'Museo Sans', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
+	text-shadow: 0.05em 0.05em 0.1em #000;
+	text-shadow: 0 0.025em 0.05em rgba(0,0,0,0.75), 0 0.05em 0.1em rgba(0,0,0,0.5);
+  }
+  .sub-logo{
+    padding-top:400px;
+    font-size: 20px;
+    padding-left: 200px;
+    position:absolute;
+    color: #fff;
+	font-family: 'Museo Sans', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
+	text-shadow: 0.05em 0.05em 0.1em #000;
+	text-shadow: 0 0.025em 0.05em rgba(0,0,0,0.75), 0 0.05em 0.1em rgba(0,0,0,0.5);
+  }
+  .menu{
+      position:absolute;
+  }
+  
+  .input-file-container {
+    position: absolute;
+    width: 225px;
+    top: 500px; left: 300px;
+   
+    
+  } 
+  .js .input-file-trigger {
+    display: block;
+    padding: 14px 45px;
+    background: #39D2B4;
+    color: #fff;
+    font-size: 1em;
+    transition: all .4s;
+    cursor: pointer;
+    
+  }
+  .js .input-file {
+    position: absolute;
+
+    width: 225px;
+    opacity: 0;
+    padding: 14px 0;
+    cursor: pointer;
+  }
+  .js .input-file:hover + .input-file-trigger,
+  .js .input-file:focus + .input-file-trigger,
+  .js .input-file-trigger:hover,
+  .js .input-file-trigger:focus {
+    background: #34495E;
+    color: #39D2B4;
+  }
+  
+  .file-return {
+    margin: 0;
+  }
+  .file-return:not(:empty) {
+    margin: 1em 0;
+  }
+  .js .file-return {
+    font-style: italic;
+    font-size: .9em;
+    font-weight: bold;
+  }
+  .js .file-return:not(:empty):before {
+    content: "Selected file: ";
+    font-style: normal;
+    font-weight: normal;
+  }
+  
+ 
+  
+  
+  
+  /* Useless styles, just for demo styles */
+  
+  .txtcenter {
+    margin-top: 4em;
+    font-size: .9em;
+    text-align: center;
+    color: #aaa;
+  }
+  .copy {
+    margin-top: 2em;
+  }
+  .copy a {
+    text-decoration: none;
+    color: #1ABC9C;
+  }
+  .upload-btn {
+    position:absolute;
+    background-color: rgb(12, 12, 70);
+    border: none;
+    color: white;
+    height: 46px;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    top: 495px; left: 540px;
+  }

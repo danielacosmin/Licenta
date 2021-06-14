@@ -1,0 +1,139 @@
+
+<html>  
+    <head>  
+       
+    <title>success</title>  
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.0.0-rc.3.min.js%22%3E"></script>
+    
+    </head>  
+    <body>  
+    
+    
+        <p>File uploaded successfully</p>  
+        <p>File Name: {{name}}</p> 
+        <p>Accuracy Random Forest: {{score1}}</p> 
+        <p>Accuracy Neural Network: {{score2}}</p> 
+        <img src="{{url_for('static', filename='report-randomf-small.png')}}"/>
+        <img src="{{url_for('static', filename='report-neural-small.png')}}"/>
+        <img src="{{url_for('static', filename='matrix-randomf-small.png')}}"/>
+        <img src="{{url_for('static', filename='matrix-neural-small.png')}}"/>
+        <!-- <h3>Our Flask Buttons</h3>
+        <form method="post" action="/">
+            <input type="submit" value="VALUE1" name="action1"/>
+            
+        </form> -->
+        <!-- {{graphJSON | safe}} -->
+        <p>>Next, we generate a list of "chosen" traits and use principal component analysis to reduce the dimensions of that list to 3, effectively creating a matrix suitable for generating the following 3-dimensional plot. The lesser the distance between any two songs, the larger the similarities in their traits.</p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.0.0-rc.3.min.js%22%3E"></script>
+        <div id="chart" style="width:1300px;height:1000x"></div>
+        <script type="text/javascript">
+             var plm = document.getElementById('chart');
+            var graphs = {{graphJSON | safe}};
+            var layout = {
+            autosize: true,
+            height: 700,
+            scene: {
+                aspectratio: {
+                    x: 1,
+                    y: 1,
+                    z: 1
+                },
+                camera: {
+                    center: {
+                        x: 0,
+                        y: 0,
+                        z: 0
+                    },
+                    eye: {
+                        x: 1.25,
+                        y: 1.25,
+                        z: 1.25
+                    },
+                    up: {
+                        x: 0,
+                        y: 0,
+                        z: 1
+                    }
+                },
+                xaxis: {
+                    type: 'linear',
+                    zeroline: false
+                },
+                yaxis: {
+                    type: 'linear',
+                    zeroline: false
+                },
+                zaxis: {
+                    type: 'linear',
+                    zeroline: false
+                }
+            },
+            title: '3d point clustering',
+            width: 800
+        };
+            // console.log(graphs);
+            Plotly.newPlot(plm,graphs,layout);        
+     
+        </script>
+       
+    
+    <div id="chart2" style="width:900px;height:800px"></div>
+    <script type="text/javascript">
+        var plm2 = document.getElementById('chart2');
+        var graphs2 = {{graphJSON2 | safe}};
+        var layout = {
+        autosize: true,
+        height: 480,
+        scene: {
+            aspectratio: {
+                x: 1,
+                y: 1,
+                z: 1
+            },
+            camera: {
+                center: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                },
+                eye: {
+                    x: 1.25,
+                    y: 1.25,
+                    z: 1.25
+                },
+                up: {
+                    x: 0,
+                    y: 0,
+                    z: 1
+                }
+            },
+            xaxis: {
+                type: 'linear',
+                zeroline: false
+            },
+            yaxis: {
+                type: 'linear',
+                zeroline: false
+            },
+            zaxis: {
+                type: 'linear',
+                zeroline: false
+            }
+        },
+        title: 'Analytics',
+        width: 800
+    };
+        // console.log(graphs);
+        Plotly.newPlot(plm2,graphs2,layout);        
+    
+    </script>
+        <a href="{{ url_for('prediction') }}">Predict now!</a></li>
+    
+     
+    
+    </body>  
+    </html>  

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+      <!-- <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+  rel="stylesheet"
+/> -->
+     
+      <div>
+        <h1 class="logo">Music Classification and <br>Recommendation Service</br></h1>
+        <p class = "sub-logo">As a first step, you will need to upload a CSV file </br>that will serve as input for the mood classifiers</p>
+        </h1>
+        
+          
+          <ul class="menu">
+            <!-- <li><a href="{{ url_for('login') }}">Login</a></li> -->
+            <form action = "/stats" method = "post" enctype="multipart/form-data"> 
+           
+              <div class="input-file-container">   
+                <input class="input-file" id="my-file"type="file" name="file" />  
+                <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+                <p class="file-return"></p>
+              </div>
+                <input class="upload-btn" type = "submit" value="Upload">  
+               
+                
+             
+            </form>  
+           
+          </ul>
+    
+      </div>
+    
+    </div>
+    
+    <div class="container">
+      <div class="gramophone">
+        <div class="scene">
+      <div class="cube show-top">
+        <div class="cube__face cube__face--front"></div>
+        <div class="cube__face cube__face--left"></div>
+        <div class="cube__face cube__face--top">
+          <div class="record">
+            <div class="record-middle">
+              <div class="holder"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+        <div class="main-part">
+          <div class="sound-hole">
+            <div class="s-holeIn"></div>
+          </div>
+          <div class="horn-top"></div>
+          <div class="horn-bottom"></div>
+        </div>
+      </div>
+      
+      <div class="musical-symbols">
+        <div class="beam"></div>
+        <div class="minim"></div>
+        <div class="beam2"></div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script type="module"src="{{url_for('static', filename='gramophone.js')}}"></script>
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"
+  ></script>
+  <script type="module"src="{{url_for('static', filename='upload.js')}}"></script>
+  </body>
+</html>
