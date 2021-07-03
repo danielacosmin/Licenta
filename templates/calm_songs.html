@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product-Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analytics.css') }}">
+</head>
+<body>
+  <div class="bluebg">
+  <h2 id="legend">The songs that you will select will be used as "seeds" for the Spotify recommender. After all recommendations will be generated
+    the algorithm will filter the ones that match the same mood as the previously selected one.</h2>
+  </h2>
+  
+    <div id="shop">
+      
+      {% for i,j in enumerate(data) %}
+      <div class="mahsol">
+            <img src={{data[i][3]}}>
+      
+            <audio id="preview" controls="controls">
+              <source src={{data[i][4]}} type="audio/mpeg"/>
+            </audio>
+        <div id="artist">{{data[i][1]}}</div>
+        <div id="song">{{data[i][0]}}</div>
+        
+        <form method="post"enctype="multipart/form-data">
+        <button type="submit"name="submit_song" value={{data[i][2]}}> <p>Add</p></button>
+      </form>
+    </div>
+      
+  {% endfor %}
+
+    </div>
+   
+
+</body>
+</div>
+<form method="post"action="/recommend-calm" enctype="multipart/form-data">
+  <div class="button">
+  <input class="button"type="submit"name="recommend_calm" value="Get my songs"></input>
+</div>
+</form>
+</html>

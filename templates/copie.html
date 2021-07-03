@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Music Mood Classifier</h1>
+        <strong><nav>
+          <ul class="menu">
+            <!-- <li><a href="{{ url_for('login') }}">Login</a></li> -->
+            <form action='/prediction' method = "post" enctype="multipart/form-data">
+                <label for="song">Song name:</label><br>
+                <input type="text" id="song-name" name="song"><br>
+                <label for="artist">Artist name:</label><br>
+                <input type="text" id="artist-name" name="artist"><br><br>
+                <input type="submit" value="Submit">
+              </form> 
+   
+          </ul>
+          {{prediction}}
+          <img src={{image_url}}></img>
+        </nav></strong>
+        <iframe src={{listen}}></iframe>
+        <a href="{{ url_for('choose_mood') }}">Recommend songs</a>
+      </div>
+    </header>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

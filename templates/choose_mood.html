@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/choose-mood.css') }}">
+<!-- <form class="form-inline" method="POST" action="{{ url_for('action_mood') }}">
+    <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon">Please select</span>
+              <select name="comp_select" class="selectpicker form-control">
+                {% for o in data %}
+                <option value="{{ o.name }}">{{ o.name }}</option>
+                {% endfor %}
+              </select>
+      </div>
+      <button type="submit" class="btn btn-default">Go</button>
+    </div>
+  </form> -->
+
+  
+  <div id="app-cover">
+    <h1>The algorithm has classified your favourite songs into the following moods</h1>
+    <p>The first step is to choose what mood would you like your recommendations to be based upon</p>
+    <div id="app">
+      <div class="mood" id="mood-great">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        
+        <div class="mood-name"><span> <a href="{{ url_for('my_happy_songs') }}"style="text-decoration: none;color:white">Happy</a></span></div>
+      </div>
+         <div class="mood" id="mood-energetic">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="mood-name"><span> <a href="{{ url_for('my_energetic_songs') }}"style="text-decoration: none;color:white">Energetic</a></span></div>
+      </div>
+      <div class="mood" id="mood-okay">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="mood-name"><span> <a href="{{ url_for('my_calm_songs') }}"style="text-decoration: none;color:white">Calm</a></span></div>
+      </div>
+      <div class="mood" id="mood-bad">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="mood-name"><span> <a href="{{ url_for('my_sad_songs') }}"style="text-decoration: none;color:white">Sad</a></span></div>
+      </div>
+    </div>
+  </div>
+

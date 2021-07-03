@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Multi</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations.css') }}">
+</head>
+<body>
+  <h1 id="title">Your {{mood}} Recommendations</h1>
+  <h3>Hover over the album photo to preview a song & refresh the page for more songs</h3>
+  <div class="scrolly">
+      <h2 class="topT"></h2>
+      <!-- <button id="left"><span class="material-icons">chevron_left</span></button>
+      <button id="right"><span class="material-icons">chevron_right</span></button> -->
+  <ul class="carouselPre">
+    {% for i,j in enumerate(r) %}
+      <li class="itemsC">
+          <div class="contents">
+              <!-- <h1 class="leftTxtDet">{{r[i][1]}} - {{r[i][0]}}</h1> -->
+              <div class="textDet">        
+          </div>
+        <div class = "container_img">
+          <div class="bgImg"><img src={{r[i][2]}}></div>
+          <div class = "overlay">
+            <div class="overlay-text">
+              <div class="title"style="font-size:25px; overflow-wrap: break-word;
+              word-wrap: break-word;">
+                {{r[i][1]}}</div>
+    
+              <div class="artist"style="font-size:20px;overflow-wrap: break-word;
+              word-wrap: break-word;">
+                 {{r[i][0]}}</div><br>
+              <div class="features"style="font-size:10px ;">
+              danceability:{{r[i][5]}}<br>
+              accousticness:{{r[i][6]}}<br>
+              energy:{{r[i][7]}}<br>
+              instrumentalness:{{r[i][8]}}<br>
+              liveness:{{r[i][9]}}<br>
+              valence:{{r[i][10]}}<br>
+              loudness:{{r[i][11]}}<br>
+              speechiness:{{r[i][12]}}<br>
+              tempo:{{r[i][13]}}<br></div>
+              {% if r[i][3] %}
+              <iframe id="music-prev"src={{r[i][3]}} style="border-style: none"width="500" height="80" allow="encrypted-media"alt=""></iframe></div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </li>
+     
+    {% endfor %}
+  </ul>
+</div>
+<form method="post"action="/choose-mood" enctype="multipart/form-data">
+  <div class="button">
+    <input class="button" type="submit" name="go_back"value="Back" >
+  </div>
+  <!-- <button type="submit"name="go_back"value="Back"></button> -->
+</form>
+
+<script type="module"src="{{url_for('static', filename='carousel.js')}}"></script>
+
+</body>
+</html>

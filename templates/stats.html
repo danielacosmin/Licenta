@@ -1,0 +1,188 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stats.css') }}">
+<img />
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.0.0-rc.3.min.js%22%3E"></script>
+
+
+<header class="intro">
+    <h1>Models training has finished</h1>
+    <p class="textBar">Scroll down to view how the models performed and details about the dataset. After that try <a  class="textBar"href="{{ url_for('prediction') }}">predicting new songs</a></p>
+    
+  </header>
+  
+  <div class="wrapper">
+        <div class="title_details">
+            <h2>Random Forest Model</h2>
+            <h3>Accuracy score: {{score1}} </h3>
+            <h3 style="font-size: 15px;">Legend: 0 = Calm, 1 = Energetic, 2 = Happy, 3 = Sad</h3>
+        </div>
+
+        <img id="report" src="{{url_for('static', filename='report-randomf-small.png')}}" alt="">
+        <img id="matrix"src="{{url_for('static', filename='matrix-randomf-small.png')}}"/>
+
+        <div class="title_details">
+          <h2>Neural network Model</h2>
+          <h3>Accuracy score: {{score2}} </h3>
+          <h3 style="font-size: 15px;">Legend: 0 = Calm, 1 = Energetic, 2 = Happy, 3 = Sad</h3>
+        </div>
+        
+        <img id="report" src="{{url_for('static', filename='report-neural-small.png')}}"/>
+        <img id="matrix"src="{{url_for('static', filename='matrix-neural-small.png')}}"/>
+
+        <div class="title_details3">
+          <h2>Dataset Analysis</h2>
+          <h3></h3>
+          <img id="feature_imp" src="{{url_for('static', filename='important_features.png')}}"/>
+          
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.0.0-rc.3.min.js%22%3E"></script>
+        <div id="chart" style="width:1300px;height:1000px;padding-left:100px"></div>
+        <script type="text/javascript">
+             var plot= document.getElementById('chart');
+            var graphs = {{graphJSON | safe}};
+            var layout = {
+            autosize: true,
+            height: 700,
+            scene: {
+                aspectratio: {
+                    x: 1,
+                    y: 1,
+                    z: 1
+                },
+                camera: {
+                    center: {
+                        x: 0,
+                        y: 0,
+                        z: 0
+                    },
+                    eye: {
+                        x: 1.25,
+                        y: 1.25,
+                        z: 1.25
+                    },
+                    up: {
+                        x: 0,
+                        y: 0,
+                        z: 1
+                    }
+                },
+                xaxis: {
+                    title:"PC1",
+                    type: 'linear',
+                    zeroline: false
+                },
+                yaxis: {
+                    title:"PC2",
+                    type: 'linear',
+                    zeroline: false
+                },
+                zaxis: {
+                    title:"PC3",
+                    type: 'linear',
+                    zeroline: false
+                }
+            },
+           
+            width: 800
+        };
+            // console.log(graphs);
+            Plotly.newPlot(plot,graphs,layout);        
+     
+        </script>
+        <div id="chart-title">Song features viewed in 3D</div>
+        <p id='threed-text'>This graph uses Principal Component Analysis (PCA) to reduce the dimension<br> of 
+            the above 10 audio features to 3, while effectively preserving variation and <br>bringing out strong patterns in the studied dataset.<br>
+             </p>
+            
+        <p id='threed-text'style="margin-top:100px">
+            This is done by creating Principal Components(PC), which are new uncorrelated variables that represent linear combinations of the initial variables.<br>
+            This being said, the axes in the graph represent the directions of the data that explain a maximal amount of variance :
+            the lesser the distance between any two songs, the larger the similarities in their traits.
+        </p>
+
+          
+             <p id='features-text'><span id='bold'>Energy </span>= perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy.Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy<br>
+                <span id='bold'>Acousticness </span>=  confidence measure from 0.0 to 1.0 of whether the track is acoustic
+                <br>
+                <span id='bold'>Valence </span>= describing the musical positiveness conveyed by a track
+                <br>
+                <span id='bold'>Danceability </span>= describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity
+                <br>
+                <span id='bold'>Loudness</span>= the quality of a sound that is the primary psychological correlate of physical strength (amplitude). It is measured in dB
+    
+                <br>
+                <span id='bold'>Speechiness</span>= detects the presence of spoken words in a track
+                <br>
+                <span id='bold'>Tempo</span>= overall estimated tempo of a track in beats per minute (BPM), is the speed or pace of a given piece and derives directly from the average beat duration.
+                <br>
+                <span id='bold'>Instrumentalness</span>= predicts whether a track contains no vocals
+                <br>
+                <span id='bold'>Liveness</span>= detects the presence of an audience in the recording
+                <br>
+                <span id='bold'>Key</span>= the estimated overall key of the track. Integers map to pitches using standard Pitch Class notation . E.g. 0 = C, 1 = C#/Db, 2 = D, and so on. If no key was detected, the value is -1
+                <br>
+                <span id='bold'>Mode </span>= indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0
+                <br>    
+            </p>
+            <img id="features"src="{{url_for('static', filename='features.png')}}"/>      
+    <div id="chart2" style="width:900px;height:700px;padding-left:100px;"></div>
+    <script type="text/javascript">
+        var plot2 = document.getElementById('chart2');
+        var graphs2 = {{graphJSON2 | safe}};
+        var layout = {
+        autosize: true,
+        height: 480,
+        scene: {
+            aspectratio: {
+                x: 1,
+                y: 1,
+                z: 1
+            },
+            camera: {
+                center: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                },
+                eye: {
+                    x: 1.25,
+                    y: 1.25,
+                    z: 1.25
+                },
+                up: {
+                    x: 0,
+                    y: 0,
+                    z: 1
+                }
+            },
+            xaxis: {
+                
+                type: 'linear',
+                zeroline: false
+            },
+            yaxis: {
+              
+                type: 'linear',
+                zeroline: false
+            },
+            zaxis: {
+               
+                type: 'linear',
+                zeroline: false
+            }
+        },
+        title: 'Analytics',
+        width: 800
+    };
+        // console.log(graphs);
+        Plotly.newPlot(plot2,graphs2,layout);        
+    
+    </script>
+      
+
+
+    
